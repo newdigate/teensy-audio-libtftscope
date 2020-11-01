@@ -143,8 +143,9 @@ import_arduino_library(Audio)
 import_arduino_library(SPI)
 import_arduino_library(SD)
 import_arduino_library(SerialFlash)
-import_arduino_library(Adafruit_GFX_Library)
-import_arduino_library(Adafruit_ST7735_and_ST7789_Library)
+import_arduino_library(ST7735_t3)
+#import_arduino_library(Adafruit_GFX_Library)
+#import_arduino_library(Adafruit_ST7735_and_ST7789_Library)
 teensy_add_executable(TeensyAudioLibTFTScope
         main.cpp
         ScopeView.cpp

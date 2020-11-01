@@ -6,7 +6,7 @@
 #define ARDUINO_MIDI_WRITER_SCOPEVIEW_H
 
 #include "Arduino.h"
-#include <Adafruit_GFX.h> // Hardware-specific library
+#include <ST7735_t3.h> // Hardware-specific library
 
 #undef swap
 #include <functional>
@@ -17,7 +17,7 @@ using namespace std;
 class ScopeView {
 public:
     inline ScopeView(
-            Adafruit_GFX &tft,
+            ST7735_t3 &tft,
             AudioRecordQueue &recordQueue,
             int16_t color,
             int16_t backgroundColor,
@@ -35,7 +35,7 @@ public:
 
     
 private:
-    Adafruit_GFX *_tft;
+    ST7735_t3 *_tft;
     AudioRecordQueue *_recordQueue;
 
     int16_t buffer[128];
