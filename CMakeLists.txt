@@ -150,5 +150,7 @@ teensy_add_executable(TeensyAudioLibTFTScope
         main.cpp
         ScopeView.cpp
         ScopeView.h
+        XYScopeView.cpp
+        XYScopeView.h
         )
 
