@@ -15,6 +15,8 @@ using namespace std;
 #undef swap
 #define swap(a, b) { typeof(a) t = a; a = b; b = t; }
 
+#define SNAKE_SIZE 2048
+
 class XYScopeView {
 public:
     inline XYScopeView(
@@ -40,15 +42,22 @@ public:
 
     uint16_t oscilliscope_x = 0;
     uint16_t oscilliscope_x2 = 0;
-private:
+
+    private:
     ST7735_t3 *_tft;
     AudioRecordQueue *_recordQueue;
     AudioRecordQueue *_recordQueue2;
 
-    int16_t buffer[128];
-    int16_t buffer_y[128];
-    int16_t lastbuffer[128];
-    int16_t lastbuffer_y[128];
+    int16_t buffer[256];
+    int16_t buffer_y[256];
+
+    uint8_t snake_x[SNAKE_SIZE];
+    uint8_t snake_y[SNAKE_SIZE];
+
+    uint16_t snake_head = 0;
+    uint16_t snake_tail = 0;
+    uint16_t snake_length = 0;
+
     int16_t _backgroundColor;
     int16_t _color;
     int8_t _xOffset;
