@@ -15,7 +15,7 @@ using namespace std;
 #undef swap
 #define swap(a, b) { typeof(a) t = a; a = b; b = t; }
 
-#define SNAKE_SIZE 2048
+#define SNAKE_SIZE 4096
 
 class XYScopeView {
 public:
@@ -54,9 +54,9 @@ public:
     uint8_t snake_x[SNAKE_SIZE];
     uint8_t snake_y[SNAKE_SIZE];
 
-    uint16_t snake_head = 0;
-    uint16_t snake_tail = 0;
-    uint16_t snake_length = 0;
+    volatile uint16_t snake_head = 0;
+    volatile uint16_t snake_tail = 0;
+    volatile uint16_t snake_length = 0;
 
     int16_t _backgroundColor;
     int16_t _color;

@@ -9,17 +9,22 @@ void XYScopeView::drawScope() {
     if (oscilliscope_x2 > 127) {
         return;
     }
+    bool positionDidChange  =   (snake_length == 0)
+                                || ((oscilliscope_x > 1 && oscilliscope_x2 > 1 && oscilliscope_x < 128 && oscilliscope_x2 < 128) &&
+                                    (buffer_y[oscilliscope_x] >> 9 != buffer_y[oscilliscope_x-1] >> 9
+                                    || buffer[oscilliscope_x2] >> 9 != buffer[oscilliscope_x2-1] >> 9));
+    if (!positionDidChange) {
 
-    bool positionDidChange =
-            (snake_length == 0)
-            || ((oscilliscope_x > 1 && oscilliscope_x2 > 1) &&
-                (buffer_y[oscilliscope_x] >> 9 != buffer_y[oscilliscope_x-1] >> 9
-                 || buffer[oscilliscope_x2] >> 9 != buffer[oscilliscope_x2-1] >> 9));
-
-    if (!positionDidChange)
-    {
         oscilliscope_x++;
         oscilliscope_x2++;
+        return;
+    }
+
+    if (oscilliscope_x > 127) {
+        return;
+    }
+
+    if (oscilliscope_x2 > 127) {
         return;
     }
 
@@ -35,22 +40,14 @@ void XYScopeView::drawScope() {
     snake_head%=SNAKE_SIZE;
     snake_length+=1;
 
+    while (snake_length >= SNAKE_SIZE)
+        undrawScope();
 
     oscilliscope_x++;
     oscilliscope_x2++;
 }
 
 void XYScopeView::undrawScope() {
-    if (oscilliscope_x > 126) {
-        return;
-    }
-
-    if (oscilliscope_x2 > 126) {
-        return;
-    }
-
-    if (snake_length < SNAKE_SIZE-1)
-        return;
 
     _tft->drawPixel(
                 snake_x[snake_tail],
@@ -79,12 +76,12 @@ void XYScopeView::checkForUpdateBuffer() {
         interrupts();
     }
 
-    if (_recordQueue->available() > 2) {
+    if (_recordQueue->available() > 4) {
         _recordQueue->readBuffer();
         _recordQueue->freeBuffer();
     }
 
-    if (_recordQueue2->available() > 2) {
+    if (_recordQueue2->available() > 4) {
         _recordQueue2->readBuffer();
         _recordQueue2->freeBuffer();
     }
