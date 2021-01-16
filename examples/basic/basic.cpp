@@ -37,10 +37,3 @@ void loop() {
     scopeViewCV1.undrawScope();
     scopeViewCV1.drawScope();
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-}

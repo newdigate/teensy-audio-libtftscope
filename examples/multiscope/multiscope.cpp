@@ -113,10 +113,3 @@ void loop() {
     cvscopes[i]->drawScope();
   }
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-}

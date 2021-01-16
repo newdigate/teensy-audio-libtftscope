@@ -134,10 +134,3 @@ void loop() {
         toggleUpdateWhenDisplayReachesEnd = true;
     }
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-}
